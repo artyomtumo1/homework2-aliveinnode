@@ -1,6 +1,9 @@
-module.exports =   class Unknown extends Default {
+/*module.exports =  */class Unknown{
     constructor(x, y, index) {
-        super(x, y, index);
+        this.x = x;
+        this.y = y;
+        this.index = index;
+        this.multiply = 0;
 
         this.energy = 30;
 

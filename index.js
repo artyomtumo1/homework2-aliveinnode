@@ -125,18 +125,18 @@
 
 //home work 2//
 
-var express = require("express");
-var app = express();
+// var express = require("express");
+// var app = express();
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
-app.get("/", function(req, res){
-   res.redirect("index.html");
-});
+// app.get("/", function(req, res){
+//    res.redirect("index.html");
+// });
 
-app.listen(3000, function(){
-   console.log("Example is running on port 3000");
-});
+// app.listen(3000, function(){
+//    console.log("Example is running on port 3000");
+// });
 
 
 
@@ -148,13 +148,13 @@ app.listen(3000, function(){
 //page 18//
 
 
-// var Square = require("./module");
-// var mySquareObject = new Square(5);
+var Square = require("./module");
+var mySquareObject = new Square(5);
 
-// function main() {
-//    console.log(mySquareObject.getArea());
-// }
-// main();
+function main() {
+   console.log(mySquareObject.getArea());
+}
+main();
 
 //page 22
 // var fs = require('fs');

@@ -1,4 +1,5 @@
-module.exports =   class Gishatich extends Default {
+
+/*module.exports =  */ class Gishatich extends Default {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 100;
