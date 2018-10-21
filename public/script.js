@@ -19,19 +19,19 @@ function randomMatrix(n, m) {
         var r11 = Math.floor((Math.random() * 90) + 5);
         matrix[r1][r11] = 1;
     }
-    for (var w = 0; w < 180; w++) {
+    // for (var w = 0; w < 180; w++) {
 
-        var r2 = Math.floor((Math.random() * 90) + 5);
-        var r22 = Math.floor((Math.random() * 90) + 5);
-        matrix[r2][r22] = 2;
-    }
+    //     var r2 = Math.floor((Math.random() * 90) + 5);
+    //     var r22 = Math.floor((Math.random() * 90) + 5);
+    //     matrix[r2][r22] = 2;
+    // }
 
-    for (var e = 0; e < 100; e++) {
+    // for (var e = 0; e < 100; e++) {
 
-        var r3 = Math.floor((Math.random() * 90) + 5);
-        var r33 = Math.floor((Math.random() * 90) + 5);
-        matrix[r3][r33] = 3;
-    }
+    //     var r3 = Math.floor((Math.random() * 90) + 5);
+    //     var r33 = Math.floor((Math.random() * 90) + 5);
+    //     matrix[r3][r33] = 3;
+    // }
 
     for (var r = 0; r < 40; r++) {
 
@@ -40,12 +40,12 @@ function randomMatrix(n, m) {
         matrix[r4][r44] = 4;
     }
 
-    for (var t = 0; t < 35; t++) {
-        var r55 = Math.floor((Math.random() * 90) + 5);
-        var r5 = Math.floor((Math.random() * 90) + 5);
-        matrix[r5][r55] = 5;
-    }
-    for (var t = 0; t < 30; t++) {
+    // for (var t = 0; t < 35; t++) {
+    //     var r55 = Math.floor((Math.random() * 90) + 5);
+    //     var r5 = Math.floor((Math.random() * 90) + 5);
+    //     matrix[r5][r55] = 5;
+    // }
+    for (var t = 0; t < 40; t++) {
         var r55 = Math.floor((Math.random() * 90) + 5);
         var r5 = Math.floor((Math.random() * 90) + 5);
         matrix[r5][r55] = 6;

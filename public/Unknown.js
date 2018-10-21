@@ -1,11 +1,11 @@
-/*module.exports =  */class Unknown {
+class Unknown {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
         this.index = index;
         this.multiply = 0;
 
-        this.energy = 30;
+        this.energy = 300;
 
 
     }

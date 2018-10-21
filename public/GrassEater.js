@@ -33,7 +33,7 @@
             this.y=y;
             this.energy--;
             }
-            if((this.multiply ==15 && pogoda == "Summer" && matrix[y][x] == 2) || (this.multiply ==15 && pogoda == "Spring") || (this.multiply ==18 && pogoda == "Winter") || (this.multiply ==18 && pogoda == "Autum"))
+            if((this.multiply ==15 && pogoda == "Summer"  && matrix[y][x] == 2) || (this.multiply ==15 && pogoda == "Spring") || (this.multiply ==18 && pogoda == "Winter") || (this.multiply ==18 && pogoda == "Autum"))
            {
                 this.mul();
                 this.multiply = 0;    
@@ -61,7 +61,8 @@
   
        var emptyCells = this.chooseCell(0);
        var newCell = random(emptyCells);
-       if(newCell){
+       
+       if(newCell && this.gender == 0&& matrix[y][x].gender != 0){
            var newX = newCell[0];
            var newY = newCell[1];
            matrix[newY][newX] = this.index;
