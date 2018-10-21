@@ -1,4 +1,4 @@
-/*module.exports =  */class Unknown{
+/*module.exports =  */class Unknown {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
@@ -50,7 +50,7 @@
             [this.x + 2, this.y + 2]
         ]
     }
-    chooseCell(character1, character2, character3, character4, character5, character6) {
+    chooseCell(character1, character2, character3, character4, character5, character6, character7) {
         this.getNewCoor();
         var found = [];
         for (var i in this.direct) {
@@ -63,7 +63,8 @@
                     matrix[y][x] == character3 ||
                     matrix[y][x] == character4 ||
                     matrix[y][x] == character5 ||
-                    matrix[y][x] == character6) {
+                    matrix[y][x] == character6 ||
+                    matrix[y][x] == character7) {
                     found.push(this.direct[i])
                 }
             }
@@ -114,10 +115,11 @@
 
 
                     for (var i in unkArr) {
-
+                        
                         if (x == unkArr[i].x && y == unkArr[i].y) {
                             unkArr.splice(i, 1);
                         }
+                        
                     }
                 }
             }
@@ -125,7 +127,7 @@
     }
 
     move() {
-        var newCel = this.chooseCell(0, 6);
+        var newCel = this.chooseCell(0, 4, 6);
         var randCel = random(newCel);
         if (randCel) {
 
@@ -138,6 +140,13 @@
                 this.y = y;
                 this.energy--;
 
+            }
+            else if (matrix[y][x] == 4) {
+                
+                this.destroy();
+                
+                this.die();
+               
             }
             else if (matrix[y][x] == 6) {
 

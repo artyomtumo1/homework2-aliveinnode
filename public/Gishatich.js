@@ -1,8 +1,9 @@
 
-/*module.exports =  */ class Gishatich extends Default {
+class Gishatich extends Default {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 100;
+        this.gender = Math.round(Math.random());
     }
 
 
@@ -113,7 +114,7 @@
                     }
                 }
 
-                if (this.multiply >= 18) {
+                if (this.multiply ==18 && pogoda == "Summer" || this.multiply == 18 && pogoda == "Spring"  || this.multiply == 21 && pogoda == "Winter" || this.multiply == 21 && pogoda == "Autum")  {
                     this.mul();
 
                 }
