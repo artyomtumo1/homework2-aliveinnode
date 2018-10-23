@@ -2,7 +2,7 @@
 class Gishatich extends Default {
     constructor(x, y, index) {
         super(x, y, index);
-        this.energy = 150;
+        this.energy = 97;
         this.gender = Math.round(Math.random());
     }
 
@@ -19,6 +19,7 @@ class Gishatich extends Default {
     }
 
     move() {
+        // mul don work because in move
         var newCel = this.chooseCell(0, 1, 6);
         var randCel = random(newCel);
         if (randCel) {
@@ -28,10 +29,10 @@ class Gishatich extends Default {
             if (matrix[y][x] == 0) {
                 matrix[this.y][this.x] = 0;
                 matrix[y][x] = 3;
-            
-            this.x = x;
-            this.y = y;
-            this.energy--;
+
+                this.x = x;
+                this.y = y;
+                this.energy--;
             }
             else if (matrix[y][x] == 1) {
 
@@ -46,24 +47,24 @@ class Gishatich extends Default {
                 var nGrass = new Grass(this.x, this.y, 1);
                 grassArr.push(nGrass);
 
-            this.x = x;
-            this.y = y;
-            this.energy--;
+                this.x = x;
+                this.y = y;
+                this.energy--;
 
             }
-           else if(matrix[y][x] == 3){
+            else if (matrix[y][x] == 3) {
 
-            if((this.multiply ==15 && pogoda == "Summer"   && this.gender == 0&& matrix[y][x].gender == 1) || (this.multiply ==15 && pogoda == "Spring"   && this.gender == 0&& matrix[y][x].gender == 1 ) || (this.multiply ==18 && pogoda == "Winter"   && this.gender == 0&& matrix[y][x].gender == 1 ) || (this.multiply ==18 && pogoda == "Autum"   && this.gender == 0&& matrix[y][x].gender == 1  ))
-            {
-               this.mul();
-                  
+                if ( (this.multiply == 18 && pogoda == "Winter" && this.gender == 0 && matrix[y][x].gender == 1)/* */ 
+                || (this.multiply == 18 && pogoda == "Autum" && this.gender == 0 && matrix[y][x].gender == 1) /* */
+                ||(this.multiply == 15 && pogoda == "Summer" && this.gender == 0 && matrix[y][x].gender == 1) /* */
+                || (this.multiply == 15 && pogoda == "Spring" && this.gender == 0 && matrix[y][x].gender == 1)/* */ 
+                ) 
+                {
+                    setTimeout(function(){this.mul();}, 3000);
+
+                }
+
             }
-
-           }
-
-
-            
-
 
             else if (matrix[y][x] == 6) {
 
@@ -85,10 +86,9 @@ class Gishatich extends Default {
     }
     mul() {
 
-        var emptyCells = this.chooseCell(0/*,3*/);
+        var emptyCells = this.chooseCell(0);
         var newCell = random(emptyCells);
-        // var x = newCell[0];
-        // var y = newCell[1];
+        
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -130,7 +130,7 @@ class Gishatich extends Default {
                     }
                 }
 
-                if (this.multiply ==18 && pogoda == "Summer" || this.multiply == 18 && pogoda == "Spring"  || this.multiply == 21 && pogoda == "Winter" || this.multiply == 21 && pogoda == "Autum")  {
+                if (this.multiply == 18 && pogoda == "Summer" || this.multiply == 18 && pogoda == "Spring" || this.multiply == 21 && pogoda == "Winter" || this.multiply == 21 && pogoda == "Autum") {
                     this.mul();
 
                 }

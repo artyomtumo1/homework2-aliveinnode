@@ -35,12 +35,14 @@
             }
             if(matrix[y][x] == 2){
 
-                if((this.multiply ==15 && pogoda == "Summer"   && this.gender == 0&& matrix[y][x].gender == 1 )/* */
-                 || (this.multiply ==15 && pogoda == "Spring"  && this.gender == 0&& matrix[y][x].gender == 1 )/* */ 
-                 || (this.multiply ==18 && pogoda == "Winter"  && this.gender == 0&& matrix[y][x].gender == 1 )/* */ 
-                 || (this.multiply ==18 && pogoda == "Autum" && this.gender == 0&& matrix[y][x].gender == 1  ))
+                if( (this.multiply ==14 && pogoda == "Winter"  && this.gender == 0&& matrix[y][x].gender == 1 )/* */ 
+                || (this.multiply ==14 && pogoda == "Autum" && this.gender == 0&& matrix[y][x].gender == 1  )/* */
+                  ||  (this.multiply ==11 && pogoda == "Summer"   && this.gender == 0&& matrix[y][x].gender == 1 )/* */
+                 || (this.multiply ==11 && pogoda == "Spring"  && this.gender == 0&& matrix[y][x].gender == 1 )/* */ 
+                 )
              {
-                this.mul();
+                
+                setTimeout(function(){this.mul();}, 3000);
                    
              }
 
@@ -67,19 +69,22 @@
     }
     mul(){
   
-       var emptyCells = this.chooseCell(0/*,2*/);
-       var newCell = random(emptyCells);
-    //    var x =  newCell[0];
-    //    var y =  newCell[1];
-       
-       if(newCell){
-           var newX = newCell[0];
-           var newY = newCell[1];
-           matrix[newY][newX] = this.index;
-           var NewGraseat = new GrassEater(newX, newY, this.index);
-           GrassEaters.push(NewGraseat);
-           this.multiply = 0; 
-           }  
+  
+    var emptyCells = this.chooseCell(0);
+    var newCell = random(emptyCells);
+ 
+    
+    if(newCell){
+        var newX = newCell[0];
+        var newY = newCell[1];
+        matrix[newY][newX] = this.index;
+        var NewGraseat = new GrassEater(newX, newY, this.index);
+        GrassEaters.push(NewGraseat);
+        this.multiply = 0; 
+        }
+  
+  
+         
 }
      
     

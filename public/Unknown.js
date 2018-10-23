@@ -5,7 +5,7 @@ class Unknown {
         this.index = index;
         this.multiply = 0;
 
-        this.energy = 170;
+        this.energy = 75;
 
 
     }
@@ -162,16 +162,22 @@ class Unknown {
                 }
             }
         }
-
-        if (this.energy < 1) {
+        if(this.energy < 15 && pogoda == "Summer" ||/* */
+        this.energy < 15 && pogoda == "Winter" ){
             this.destroy();
             this.die();
         }
+        else  if (this.energy < 1 && pogoda == "Spring" ||/* */
+         this.energy < 1 &&pogoda == "Autum") {
+            this.destroy();
+            this.die();
+        }
+        
     }
 
 
     eat() {
-        var gishatich = this.chooseCell(1, 2, 3, 6);
+        var gishatich = this.chooseCell(1, 2, 3, 6,8);
         var randgishatich = random(gishatich);
         if (randgishatich) {
 
@@ -204,6 +210,13 @@ class Unknown {
                         GishArr.splice(i, 1);
                     }
                 }
+                for (var i in Robo_Hunters_Arr) {
+
+                    if (x == Robo_Hunters_Arr[i].x && y == Robo_Hunters_Arr[i].y) {
+                        Robo_Hunters_Arr.splice(i, 1);
+                    }
+                }
+
 
             }
             else if (matrix[y][x] == 6) {

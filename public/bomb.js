@@ -93,6 +93,12 @@ class bomb {
                         if (x == GishArr[e].x && y == GishArr[e].y) {
                             GishArr.splice(e, 1);
                         }
+                        
+                    }
+                    for (var r in Robo_Hunters_Arr) {
+                        if (x == Robo_Hunters_Arr[r].x && y == Robo_Hunters_Arr[r].y) {
+                            Robo_Hunters_Arr.splice(r, 1);
+                        }
                     }
                    
                 }
