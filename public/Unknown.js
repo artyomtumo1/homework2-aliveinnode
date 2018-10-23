@@ -5,7 +5,7 @@ class Unknown {
         this.index = index;
         this.multiply = 0;
 
-        this.energy = 300;
+        this.energy = 170;
 
 
     }
@@ -88,7 +88,7 @@ class Unknown {
             var x = this.desdirect[i][0];
             var y = this.desdirect[i][1];
             if (y >= 0 && y < matrix.length && x >= 0 && x < matrix[0].length) {
-                if (matrix[y][x] != 5) {
+                if (matrix[y][x] != 5 && matrix[y][x] != 9) {
                     matrix[y][x] = 0;
 
                     for (var i in grassArr) {

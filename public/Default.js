@@ -18,14 +18,14 @@ getNewCoor(){
            [this.x+1,this.y+1]
        ]
    }
-  chooseCell(character1,character2,character3){
+  chooseCell(character1,character2,character3,character4){
     this.getNewCoor();
     var found = [];
     for(var i in this.direct){
         var x =this.direct[i][0];
         var y = this.direct[i][1];
         if(y >= 0 && y < matrix.length && x >= 0 && x < matrix[0].length  ){
-        if(matrix[y][x]==character1 || matrix[y][x]== character2 || matrix[y][x]== character3){
+        if(matrix[y][x]==character1 || matrix[y][x]== character2 || matrix[y][x]== character3 || matrix[y][x]== character4){
             found.push(this.direct[i])
         }
     }

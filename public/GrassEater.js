@@ -2,7 +2,7 @@
  class GrassEater extends Default{
     constructor(x,y,index) {
         super(x,y,index);
-        this.energy = 32;
+        this.energy = 62;
         this.gender = Math.round(Math.random());
         
     }
@@ -33,11 +33,19 @@
             this.y=y;
             this.energy--;
             }
-            if((this.multiply ==15 && pogoda == "Summer"  && matrix[y][x] == 2) || (this.multiply ==15 && pogoda == "Spring") || (this.multiply ==18 && pogoda == "Winter") || (this.multiply ==18 && pogoda == "Autum"))
-           {
+            if(matrix[y][x] == 2){
+
+                if((this.multiply ==15 && pogoda == "Summer"   && this.gender == 0&& matrix[y][x].gender == 1 )/* */
+                 || (this.multiply ==15 && pogoda == "Spring"  && this.gender == 0&& matrix[y][x].gender == 1 )/* */ 
+                 || (this.multiply ==18 && pogoda == "Winter"  && this.gender == 0&& matrix[y][x].gender == 1 )/* */ 
+                 || (this.multiply ==18 && pogoda == "Autum" && this.gender == 0&& matrix[y][x].gender == 1  ))
+             {
                 this.mul();
-                this.multiply = 0;    
+                   
              }
+
+            }
+            
             else if(matrix[y][x] == 6){
                 matrix[y][x] = 0;
                 matrix[this.y][this.x] = this.index;
@@ -59,15 +67,18 @@
     }
     mul(){
   
-       var emptyCells = this.chooseCell(0);
+       var emptyCells = this.chooseCell(0/*,2*/);
        var newCell = random(emptyCells);
+    //    var x =  newCell[0];
+    //    var y =  newCell[1];
        
-       if(newCell && this.gender == 0&& matrix[y][x].gender != 0){
+       if(newCell){
            var newX = newCell[0];
            var newY = newCell[1];
            matrix[newY][newX] = this.index;
            var NewGraseat = new GrassEater(newX, newY, this.index);
            GrassEaters.push(NewGraseat);
+           this.multiply = 0; 
            }  
 }
      

@@ -1,5 +1,7 @@
 
 
+
+
 function randomMatrix(n, m) {
     var matrix = []
     for (var y = 0; y < n; y++) {
@@ -13,44 +15,51 @@ function randomMatrix(n, m) {
 
 
       
-    for (var q = 0; q < 212/*30*/; q++) {
+    for (var q = 0; q < 192/*30*/; q++) {
 
         var r1 = Math.floor((Math.random() * 90) + 5);
         var r11 = Math.floor((Math.random() * 90) + 5);
         matrix[r1][r11] = 1;
     }
-    // for (var w = 0; w < 180; w++) {
+    for (var w = 0; w < 180; w++) {
 
-    //     var r2 = Math.floor((Math.random() * 90) + 5);
-    //     var r22 = Math.floor((Math.random() * 90) + 5);
-    //     matrix[r2][r22] = 2;
-    // }
-
-    // for (var e = 0; e < 100; e++) {
-
-    //     var r3 = Math.floor((Math.random() * 90) + 5);
-    //     var r33 = Math.floor((Math.random() * 90) + 5);
-    //     matrix[r3][r33] = 3;
-    // }
-
-    for (var r = 0; r < 40; r++) {
-
-        var r4 = Math.floor((Math.random() * 90) + 5);
-        var r44 = Math.floor((Math.random() * 90) + 5);;
-        matrix[r4][r44] = 4;
+        var r2 = Math.floor((Math.random() * 90) + 5);
+        var r22 = Math.floor((Math.random() * 90) + 5);
+        matrix[r2][r22] = 2;
     }
 
-    // for (var t = 0; t < 35; t++) {
-    //     var r55 = Math.floor((Math.random() * 90) + 5);
-    //     var r5 = Math.floor((Math.random() * 90) + 5);
-    //     matrix[r5][r55] = 5;
+    for (var e = 0; e < 100; e++) {
+
+        var r3 = Math.floor((Math.random() * 90) + 5);
+        var r33 = Math.floor((Math.random() * 90) + 5);
+        matrix[r3][r33] = 3;
+    }
+
+    // for (var r = 0; r < 24; r++) {
+
+    //     var r4 = Math.floor((Math.random() * 90) + 5);
+    //     var r44 = Math.floor((Math.random() * 90) + 5);;
+    //     matrix[r4][r44] = 4;
     // }
+
+    for (var t = 0; t < 12; t++) {
+        var r55 = Math.floor((Math.random() * 90) + 5);
+        var r5 = Math.floor((Math.random() * 90) + 5);
+        matrix[r5][r55] = 5;
+     }
     for (var t = 0; t < 40; t++) {
         var r55 = Math.floor((Math.random() * 90) + 5);
         var r5 = Math.floor((Math.random() * 90) + 5);
         matrix[r5][r55] = 6;
 
     }
+    for (var t = 0; t < 30; t++) {
+        var r99 = Math.floor((Math.random() * 90) + 5);
+        var r9 = Math.floor((Math.random() * 90) + 5);
+        matrix[r9][r99] = 9;
+
+    }
+   
 
     return matrix;
 
@@ -79,6 +88,7 @@ var GishArr = [];
 var unkArr = [];
 var zavodArr = [];
 var bombArr = [];
+var virusArr = [];
 var side = 9;
 var pogoda = "Winter";
 
@@ -96,10 +106,11 @@ var pogoda = "Winter";
         else if(pogoda == "Autum"){
             pogoda ="Winter";
         }
+        
         console.log(pogoda)
         
 
-    }, 20000);
+    }, 3000);
 
 
 
@@ -135,14 +146,26 @@ function setup() {
                 var bom1 = new bomb(x, y, 6);
                 bombArr.push(bom1);
             }
+            else if (matrix[y][x] == 9) {
+                var virus1 = new Virus(x, y, 9);
+                virusArr.push(virus1);
+            }
 
         }
     }
 }
 function draw() {
+    var FramesNumber = 0;
+    
+    var textpogoda = "1"
+    if(FramesNumber == 30 ){textpogoda = pogoda;}
+    
+    
+     
+    
     fill(0);
     
-    text(pogoda,950,20)
+    text(textpogoda,950,20)
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             
@@ -174,6 +197,16 @@ function draw() {
             }
             else if (matrix[y][x] == 6) {
                 fill(0, 242, 212);
+                
+                
+                rect(x * side, y * side, side, side);
+
+            }
+            
+            else if (matrix[y][x] == 9) {
+                
+                fill(207, 94, 9);
+                
                 rect(x * side, y * side, side, side);
 
             }
@@ -188,9 +221,12 @@ function draw() {
     }
     for (var i in GrassEaters) {
         GrassEaters[i].eat()
+        //console.log(GrassEaters.length)
+        console.log(virusArr.length)
     }
     for (var i in GishArr) {
         GishArr[i].eat();
+        // console.log(GishArr.length)
 
     }
     for (var i in unkArr) {
@@ -204,9 +240,20 @@ function draw() {
 
 
     }
+    
+        
+        if(GrassEaters.length <= 20){
+        
+            for (var i in virusArr) {
+                virusArr[i].deploy();
+                virusArr[i].die();
+        
+        
+            }
+        }
+    
+    
 
 
 
 }
-
-
