@@ -15,6 +15,7 @@ function setup()
         socket.on('redraw', function(mtx){
             matrix = mtx;
             redraw();
+           
 
         });
     });

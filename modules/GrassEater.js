@@ -1,4 +1,4 @@
-
+var def = require("./Default")
  class GrassEater extends Default{
     constructor(x,y,index) {
         super(x,y,index);
