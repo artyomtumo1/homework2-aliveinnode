@@ -18,7 +18,7 @@
         ]
 
     }
- chooseCell(character){
+ chooseCell(matrix,character){
      var found = [];
      for(var i in this.direct){
          var x =this.direct[i][0];

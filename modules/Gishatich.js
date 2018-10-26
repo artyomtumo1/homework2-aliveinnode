@@ -20,7 +20,7 @@ module.exports = class Gishatich extends Def {
     }
     mul(matrix, GishArr) {
 
-        var emptyCells = this.chooseCell(0);
+        var emptyCells = this.chooseCell(matrix,[0]);
         var newCell = random(emptyCells);
 
         if (newCell) {
@@ -35,9 +35,9 @@ module.exports = class Gishatich extends Def {
     }
 
 
-    move(matrix, grassArr, bombArr) {
+    move(matrix, grassArr,GrassEaters,GishArr, bombArr,Robo_Hunters_Arr) {
         // mul don work because in move
-        var newCel = this.chooseCell(0, 1, 3, 6);
+        var newCel = this.chooseCell(matrix,[0, 1, 3, 6]);
         var randCel = random(newCel);
         if (randCel) {
             var x = randCel[0];
@@ -104,8 +104,8 @@ module.exports = class Gishatich extends Def {
 
 
 
-    eat(matrix, zavodArr, bombArr) {
-        var gishatich = this.chooseCell(2, 5, 6);
+    eat(matrix,grassArr,GrassEaters,GishArr,zavodArr, bombArr,Robo_Hunters_Arr) {
+        var gishatich = this.chooseCell(matrix,[2, 5, 6]);
         var randgishatich = random(gishatich);
         if (randgishatich) {
             var x = randgishatich[0];
@@ -140,13 +140,13 @@ module.exports = class Gishatich extends Def {
 
                     if (x == bombArr[i].x && y == bombArr[i].y) {
                         bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
-                        bombArr[i].die();
+                        bombArr[i].die(matrix,GishArr);
                     }
                 }
             }
         }
         else {
-            this.move();
+            this.move(matrix, grassArr,GrassEaters,GishArr, bombArr,Robo_Hunters_Arr);
 
         }
     }

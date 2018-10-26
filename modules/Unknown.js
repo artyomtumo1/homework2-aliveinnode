@@ -6,6 +6,7 @@ module.exports = class Unknown {
         this.multiply = 0;
 
         this.energy = 75;
+        this.varzang = [character1,character2,character3,character4,character5,character6,character7];
 
 
     }
@@ -50,23 +51,22 @@ module.exports = class Unknown {
             [this.x + 2, this.y + 2]
         ]
     }
-    chooseCell(character1, character2, character3, character4, character5, character6, character7) {
+
+    chooseCell(matrix,varzang) {
         this.getNewCoor();
         var found = [];
         for (var i in this.direct) {
             var x = this.direct[i][0];
             var y = this.direct[i][1];
             if (y >= 0 && y < matrix.length && x >= 0 && x < matrix[0].length) {
-
-                if (matrix[y][x] == character1 ||
-                    matrix[y][x] == character2 ||
-                    matrix[y][x] == character3 ||
-                    matrix[y][x] == character4 ||
-                    matrix[y][x] == character5 ||
-                    matrix[y][x] == character6 ||
-                    matrix[y][x] == character7) {
-                    found.push(this.direct[i])
+                for(var i in varzang)
+                {
+                    if (matrix[y][x] == varzang[i]){
+                        found.push(this.direct[i])
+                    }
                 }
+
+                
             }
         }
         return found;
@@ -126,8 +126,8 @@ module.exports = class Unknown {
         }
     }
 
-    move(matrix,bombArr) {
-        var newCel = this.chooseCell(0, 4, 6);
+    move(matrix,grassArr,GrassEaters,GishArr,unkArr,bombArr,Robo_Hunters_Arr){
+        var newCel = this.chooseCell(matrix, [0, 4, 6]);
         var randCel = random(newCel);
         if (randCel) {
 
@@ -176,8 +176,8 @@ module.exports = class Unknown {
     }
 
 
-    eat(matrix,grassArr,GrassEaters,GishArr,bombArr,) {
-        var gishatich = this.chooseCell(1, 2, 3, 6,8);
+    eat(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr) {
+        var gishatich = this.chooseCell(matrix,[1, 2, 3, 6,8]);
         var randgishatich = random(gishatich);
         if (randgishatich) {
 
@@ -228,7 +228,7 @@ module.exports = class Unknown {
 
                     if (x == bombArr[i].x && y == bombArr[i].y) {
                         bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
-                        bombArr[i].die();
+                        bombArr[i].die(matrix,bombArr);
                     }
                 }
             }
@@ -236,12 +236,12 @@ module.exports = class Unknown {
 
 
         else {
-            this.move(matrix,bombArr);
+            this.move(matrix,grassArr,GrassEaters,GishArr,unkArr,bombArr,Robo_Hunters_Arr);
 
         }
         if (this.energy < 1) {
-            this.destroy();
-            this.die();
+            this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
+            this.die(matrix,unkArr);
         }
     }
 }
