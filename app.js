@@ -46,7 +46,7 @@ io.on('connection', function (socket) {
       // console.log(grassArr.length)
     }
     for (var i in GrassEaters) {
-      GrassEaters[i].eat(matrix,grassArr,GrassEaters,bombArr,zavodArr)
+      GrassEaters[i].eat(matrix,grassArr,GrassEaters,GishArr,bombArr,zavodArr)
       //console.log(GrassEaters.length)
       //console.log(virusArr.length)
     }

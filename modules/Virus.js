@@ -64,7 +64,7 @@ module.exports = class Virus{
 
         ]
     }
-    die() {
+    die(matrix,virusArr) {
         matrix[this.y][this.x] = 0;
         for (var i in virusArr) {
             if (this.x == virusArr[i].x && this.y == virusArr[i].y) {
@@ -72,7 +72,7 @@ module.exports = class Virus{
             }
         }
     }
-    deploy() {
+    deploy(matrix,grassArr) {
         this.viruscoor()
         for (var i in this.virusdirect) {
             var x = this.virusdirect[i][0];

@@ -1,4 +1,4 @@
-
+var GrassWalk = require("./Grass")
 module.exports = class RoboHunter{
     constructor(x,y,index){
         this.x = x;
@@ -133,7 +133,7 @@ module.exports = class RoboHunter{
         }
 
     }
-    move(){
+    move(matrix,grassArr,bombArr){
         var newCel = this.chooseCell(0, 1,6);
         var randCel = random(newCel);
         if (randCel) {
@@ -174,7 +174,7 @@ module.exports = class RoboHunter{
                 for (var i in bombArr) {
 
                     if (x == bombArr[i].x && y == bombArr[i].y) {
-                        bombArr[i].deploy();
+                        bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
                         bombArr[i].die();
                     }
                 }
@@ -203,7 +203,7 @@ module.exports = class RoboHunter{
            } 
         }
         else{
-            this.move();
+            this.move(matrix,grassArr,bombArr);
         }
         if((this.multiply == 9 && pogoda == "Winter") /* */
         || (this.multiply == 7 && pogoda == "Summer")/* */
