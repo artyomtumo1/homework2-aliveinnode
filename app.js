@@ -5,6 +5,7 @@ var io = require('socket.io')(server);
 
 var matrix = require('./modules/matrix');
 var Grass = require('./modules/Grass');
+var Default = require('./modules/Default');
 var GrassEater = require('./modules/GrassEater');
 var Gishatich = require('./modules/Gishatich');
 var Unknown = require('./modules/Unknown');
@@ -39,6 +40,7 @@ var drawTime = 1000/frameCount;
 io.on('connection', function(socket){
   socket.emit( 'matrix',  matrix);
   socket.emit( 'grass1',  Grass);
+  socket.emit('default0', Default);
   socket.emit( 'garsseater2',GrassEater);
   socket.emit( 'gishatich3', Gishatich);
   socket.emit( 'unknown4',  Unknown);

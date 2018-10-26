@@ -1,4 +1,4 @@
- class zavod{
+ module.exports = class zavod{
     constructor(x,y,index){
         this.x = x;
         this.y = y;

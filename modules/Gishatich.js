@@ -1,5 +1,5 @@
-
-class Gishatich extends Default {
+var Def = require("./Default");
+module.exports = class Gishatich extends Def {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 97;

@@ -1,4 +1,4 @@
-class RoboHunter{
+module.exports = class RoboHunter{
     constructor(x,y,index){
         this.x = x;
         this.y = y;

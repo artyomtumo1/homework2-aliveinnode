@@ -1,5 +1,6 @@
-var def = require("./Default")
- class GrassEater extends Default{
+var Def = require("./Default");
+
+module.exports = class GrassEater extends Def{
     constructor(x,y,index) {
         super(x,y,index);
         this.energy = 62;

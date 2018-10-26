@@ -1,5 +1,5 @@
 
-class Default{
+module.exports = class Default{
     constructor(x,y,index){
         this.x = x;
         this.y = y;
