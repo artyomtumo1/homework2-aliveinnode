@@ -31,7 +31,7 @@
      }
      return found;
  } 
- mul(){
+ mul(matrix){
      this.multiply++;
        var emptyCells = this.chooseCell(0);
        var newCell = random(emptyCells);

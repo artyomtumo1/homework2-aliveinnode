@@ -1,4 +1,5 @@
 var Def = require("./Default");
+var grasswalk = require('./Grass')
 module.exports = class Gishatich extends Def {
     constructor(x, y, index) {
         super(x, y, index);
@@ -7,7 +8,7 @@ module.exports = class Gishatich extends Def {
     }
 
 
-    die() {
+    die(matrix, GishArr) {
 
         matrix[this.y][this.x] = 0;
 
@@ -17,10 +18,26 @@ module.exports = class Gishatich extends Def {
             }
         }
     }
+    mul(matrix, GishArr) {
 
-    move() {
+        var emptyCells = this.chooseCell(0);
+        var newCell = random(emptyCells);
+
+        if (newCell) {
+            var newX = newCell[0];
+            var newY = newCell[1];
+
+            matrix[newY][newX] = this.index;
+            var Gish1 = new Gishatich(newX, newY, this.index);
+            GishArr.push(Gish1);
+            this.multiply = 0;
+        }
+    }
+
+
+    move(matrix, grassArr, bombArr) {
         // mul don work because in move
-        var newCel = this.chooseCell(0, 1, 6);
+        var newCel = this.chooseCell(0, 1, 3, 6);
         var randCel = random(newCel);
         if (randCel) {
             var x = randCel[0];
@@ -54,13 +71,12 @@ module.exports = class Gishatich extends Def {
             }
             else if (matrix[y][x] == 3) {
 
-                if ( (this.multiply == 18 && pogoda == "Winter" && this.gender == 0 && matrix[y][x].gender == 1)/* */ 
-                || (this.multiply == 18 && pogoda == "Autum" && this.gender == 0 && matrix[y][x].gender == 1) /* */
-                ||(this.multiply == 15 && pogoda == "Summer" && this.gender == 0 && matrix[y][x].gender == 1) /* */
-                || (this.multiply == 15 && pogoda == "Spring" && this.gender == 0 && matrix[y][x].gender == 1)/* */ 
-                ) 
-                {
-                    setTimeout(function(){this.mul();}, 3000);
+                if ((this.multiply == 18 && pogoda == "Winter" && this.gender == 0 && matrix[y][x].gender == 1)/* */
+                    || (this.multiply == 18 && pogoda == "Autum" && this.gender == 0 && matrix[y][x].gender == 1) /* */
+                    || (this.multiply == 15 && pogoda == "Summer" && this.gender == 0 && matrix[y][x].gender == 1) /* */
+                    || (this.multiply == 15 && pogoda == "Spring" && this.gender == 0 && matrix[y][x].gender == 1)/* */
+                ) {
+                    setTimeout(function () { this.mul(matrix, GishArr); }, 3000);
 
                 }
 
@@ -74,7 +90,7 @@ module.exports = class Gishatich extends Def {
                 for (var i in bombArr) {
 
                     if (x == bombArr[i].x && y == bombArr[i].y) {
-                        bombArr[i].deploy();
+                        bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
                         bombArr[i].die();
                     }
                 }
@@ -84,26 +100,11 @@ module.exports = class Gishatich extends Def {
             this.die();
         }
     }
-    mul() {
-
-        var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
-        
-        if (newCell) {
-            var newX = newCell[0];
-            var newY = newCell[1];
-
-            matrix[newY][newX] = this.index;
-            var Gish1 = new Gishatich(newX, newY, this.index);
-            GishArr.push(Gish1);
-            this.multiply = 0;
-        }
-    }
 
 
 
 
-    eat() {
+    eat(matrix, zavodArr, bombArr) {
         var gishatich = this.chooseCell(2, 5, 6);
         var randgishatich = random(gishatich);
         if (randgishatich) {
@@ -129,13 +130,6 @@ module.exports = class Gishatich extends Def {
                         zavodArr.splice(i, 1);
                     }
                 }
-
-                if (this.multiply == 18 && pogoda == "Summer" || this.multiply == 18 && pogoda == "Spring" || this.multiply == 21 && pogoda == "Winter" || this.multiply == 21 && pogoda == "Autum") {
-                    this.mul();
-
-                }
-
-
             }
 
             else if (matrix[y][x] == 6) {
@@ -145,7 +139,7 @@ module.exports = class Gishatich extends Def {
                 for (var i in bombArr) {
 
                     if (x == bombArr[i].x && y == bombArr[i].y) {
-                        bombArr[i].deploy();
+                        bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
                         bombArr[i].die();
                     }
                 }

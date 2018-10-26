@@ -60,7 +60,7 @@
 
         ]
     }
-    die() {
+    die(matrix,bombArr) {
         matrix[this.y][this.x] = 0;
         for (var i in bombArr) {
             if (this.x == bombArr[i].x && this.y == bombArr[i].y) {
@@ -68,7 +68,7 @@
             }
         }
     }
-    deploy() {
+    deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr) {
         this.bombcoor()
         for (var i in this.bombdirect) {
             var x = this.bombdirect[i][0];

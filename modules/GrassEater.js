@@ -8,7 +8,7 @@ module.exports = class GrassEater extends Def{
         
     }
    
-   die(){
+   die(matrix,GrassEaters){
        
        matrix[this.y][this.x] = 0;
        
@@ -20,7 +20,7 @@ module.exports = class GrassEater extends Def{
             }
    }
 
-    move(){
+    move(matrix,bombArr,GrassEaters){
         var newCel = this.chooseCell(0,2,6);
         var randCel = random(newCel);
         if(randCel){
@@ -43,7 +43,7 @@ module.exports = class GrassEater extends Def{
                  )
              {
                 
-                setTimeout(function(){this.mul();}, 3000);
+                setTimeout(function(){this.mul(matrix,GrassEaters);}, 3000);
                    
              }
 
@@ -57,8 +57,8 @@ module.exports = class GrassEater extends Def{
                     
                     if( x == bombArr[i].x && y == bombArr[i].y)
                     {
-                        bombArr[i].deploy();
-                        bombArr[i].die();
+                        bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
+                        bombArr[i].die(matrix,bombArr);
                     }  
                     }
             }
@@ -68,7 +68,7 @@ module.exports = class GrassEater extends Def{
                     this.die();
         }
     }
-    mul(){
+    mul(matrix,GrassEaters){
   
   
     var emptyCells = this.chooseCell(0);
@@ -91,7 +91,7 @@ module.exports = class GrassEater extends Def{
     
   
     
-    eat(){
+    eat(matrix,grassArr,zavodArr,bombArr){
         var GrasEat = this.chooseCell(1,5,6);
         var randGrasEat = random(GrasEat);
         if(randGrasEat){
@@ -130,7 +130,7 @@ module.exports = class GrassEater extends Def{
                 
                 if( x == bombArr[i].x && y == bombArr[i].y)
                 {
-                    bombArr[i].deploy();
+                    bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
                     bombArr[i].die();
                 }  
                 }
@@ -139,7 +139,7 @@ module.exports = class GrassEater extends Def{
  }
         
         else {
-             this.move();
+             this.move(matrix,bombArr);
 
             }
     } 

@@ -1,3 +1,4 @@
+
 module.exports = class RoboHunter{
     constructor(x,y,index){
         this.x = x;
@@ -92,7 +93,7 @@ module.exports = class RoboHunter{
         ]
     }
 
-    destroy(){
+    destroy(matrix,zavodArr,virusArr){
         this.bombcoor();
         for (var i in this.bombdirect) {
             var x = this.bombdirect[i][0];
@@ -123,7 +124,7 @@ module.exports = class RoboHunter{
             }
         }
     }
-    die(){
+    die(matrix,Robo_Hunters_Arr){
         matrix[this.y][this.x] = 0;
         for (var i in Robo_Hunters_Arr) {
             if (this.x == Robo_Hunters_Arr[i].x && this.y == Robo_Hunters_Arr[i].y) {

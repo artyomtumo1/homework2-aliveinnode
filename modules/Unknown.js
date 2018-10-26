@@ -71,7 +71,7 @@ module.exports = class Unknown {
         }
         return found;
     }
-    die() {
+    die(matrix,unkArr) {
 
 
         matrix[this.y][this.x] = 0;
@@ -82,7 +82,7 @@ module.exports = class Unknown {
             }
         }
     }
-    destroy() {
+    destroy(matrix,grassArr,GrassEaters,GishArr,unkArr) {
         this.destroycoor();
         for (var i in this.desdirect) {
             var x = this.desdirect[i][0];
@@ -126,7 +126,7 @@ module.exports = class Unknown {
         }
     }
 
-    move() {
+    move(matrix,bombArr) {
         var newCel = this.chooseCell(0, 4, 6);
         var randCel = random(newCel);
         if (randCel) {
@@ -143,9 +143,9 @@ module.exports = class Unknown {
             }
             else if (matrix[y][x] == 4) {
                 
-                this.destroy();
+                this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
                 
-                this.die();
+                this.die(matrix,unkArr);
                
             }
             else if (matrix[y][x] == 6) {
@@ -156,8 +156,8 @@ module.exports = class Unknown {
                 for (var i in bombArr) {
 
                     if (x == bombArr[i].x && y == bombArr[i].y) {
-                        bombArr[i].deploy();
-                        bombArr[i].die();
+                        bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
+                        bombArr[i].die(matrix,bombArr);
                     }
                 }
             }
@@ -176,7 +176,7 @@ module.exports = class Unknown {
     }
 
 
-    eat() {
+    eat(matrix,grassArr,GrassEaters,GishArr,bombArr,) {
         var gishatich = this.chooseCell(1, 2, 3, 6,8);
         var randgishatich = random(gishatich);
         if (randgishatich) {
@@ -227,7 +227,7 @@ module.exports = class Unknown {
                 for (var i in bombArr) {
 
                     if (x == bombArr[i].x && y == bombArr[i].y) {
-                        bombArr[i].deploy();
+                        bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
                         bombArr[i].die();
                     }
                 }
@@ -236,7 +236,7 @@ module.exports = class Unknown {
 
 
         else {
-            this.move();
+            this.move(matrix,bombArr);
 
         }
         if (this.energy < 1) {
