@@ -2,7 +2,17 @@ var GrassWalk = require("./Grass")
 var Def = require("./Default")
 module.exports = class RoboHunter extends Def{
     constructor(x,y,index){
-        super(x,y,index)
+        super(x,y,index);
+        this.multiply = 0;
+
+    }
+    random(Arr){
+        var Item = Arr[Math.floor(Math.random() * Arr.length)];
+        return Item;
+    }
+    chooseCell(matrix,varzang){
+        super.getNewCoor();
+        return super.chooseCell(matrix,varzang)
 
     }
        
@@ -144,7 +154,7 @@ module.exports = class RoboHunter extends Def{
 
                     if (x == bombArr[i].x && y == bombArr[i].y) {
                         bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
-                        bombArr[i].die();
+                        bombArr[i].die(matrix,bombArr);
                     }
                 }
             }
@@ -154,7 +164,7 @@ module.exports = class RoboHunter extends Def{
         }
         
     }
-    eat(matrix,grassArr,bombArr,){
+    eat(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr){
         var newCell= this.chooseCell(matrix,[5,9]);
         var randCel = random(newCell);
         if(randCel){
@@ -167,12 +177,12 @@ module.exports = class RoboHunter extends Def{
             this.x = x;
             this.y = y;
 
-            this.destroy();
+            this.destroy(matrix,zavodArr,virusArr);
             this.multiply++;
            } 
         }
         else{
-            this.move(matrix,grassArr,bombArr);
+            this.move(matrix,grassArr,bombArr,GrassEaters,GishArr,Robo_Hunters_Arr);
         }
         if((this.multiply == 9 && pogoda == "Winter") /* */
         || (this.multiply == 7 && pogoda == "Summer")/* */

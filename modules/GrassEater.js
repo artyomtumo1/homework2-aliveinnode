@@ -3,10 +3,15 @@ var Def = require("./Default");
 module.exports = class GrassEater extends Def{
     constructor(x,y,index) {
         super(x,y,index);
+        this.multiply = 0;
         this.energy = 62;
         this.gender = Math.round(Math.random());
-        
-    }
+      
+        }
+        chooseCell(matrix,character1,character2,character3,character4){
+            super.getNewCoor();
+            return super.chooseCell(matrix,character1,character2,character3,character4)
+        }
    
    die(matrix,GrassEaters){
        
@@ -19,10 +24,29 @@ module.exports = class GrassEater extends Def{
                 }
             }
    }
+   mul(matrix,GrassEaters){
+  
+  
+    var emptyCells = this.chooseCell(matrix,0);
+    var newCell = this.random(emptyCells);
+ 
+    
+    if(newCell){
+        var newX = newCell[0];
+        var newY = newCell[1];
+        matrix[newY][newX] = this.index;
+        var NewGraseat = new GrassEater(newX, newY, this.index);
+        GrassEaters.push(NewGraseat);
+        this.multiply = 0; 
+        }
+  
+  
+         
+}
 
     move(matrix,bombArr,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr){
-        var newCel = this.chooseCell(matrix,[0,2,6]);
-        var randCel = random(newCel);
+        var newCel = this.chooseCell(matrix,0,2,6);
+        var randCel = this.random(newCel);
         if(randCel){
             var x = randCel[0];
             var y = randCel[1];
@@ -68,32 +92,10 @@ module.exports = class GrassEater extends Def{
                     this.die(matrix,GrassEaters);
         }
     }
-    mul(matrix,GrassEaters){
-  
-  
-    var emptyCells = this.chooseCell(matrix,[0]);
-    var newCell = random(emptyCells);
- 
-    
-    if(newCell){
-        var newX = newCell[0];
-        var newY = newCell[1];
-        matrix[newY][newX] = this.index;
-        var NewGraseat = new GrassEater(newX, newY, this.index);
-        GrassEaters.push(NewGraseat);
-        this.multiply = 0; 
-        }
-  
-  
-         
-}
-     
-    
-  
-    
-    eat(matrix,grassArr,zavodArr,bombArr){
-        var GrasEat = this.chooseCell(matrix,[1,5,6]);
-        var randGrasEat = random(GrasEat);
+   
+    eat(matrix,grassArr,zavodArr,bombArr,GrassEaters){
+        var GrasEat = this.chooseCell(matrix,1,5,6);
+        var randGrasEat = this.random(GrasEat);
         if(randGrasEat){
             var x = randGrasEat[0];
             var y = randGrasEat[1];

@@ -1,5 +1,5 @@
 
-module.exports =function randomMatrix(n, m) {
+function randomMatrix(n, m) {
     var matrix = []
     for (var y = 0; y < n; y++) {
         matrix[y] = [];

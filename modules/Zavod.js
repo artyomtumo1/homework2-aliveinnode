@@ -5,7 +5,12 @@
  module.exports = class zavod extends Def {
     constructor(x,y,index){
        super(x,y,index);
+       this.multiply = 0;
 
+    }
+    chooseCell(matrix,varzang){
+        super.getNewCoor();
+        return super.chooseCell(matrix,varzang);
     }
     mul(matrix,unkArr,grassArr){
   
@@ -30,7 +35,7 @@
 
 
 
- move(matrix,grassArr){
+ move(matrix,grassArr,unkArr){
         var newCel = this.chooseCell(matrix,[0,1]);
         var randCel = random(newCel);
         if(randCel){

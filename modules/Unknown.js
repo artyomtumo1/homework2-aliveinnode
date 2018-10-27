@@ -6,7 +6,7 @@ module.exports = class Unknown {
         this.multiply = 0;
 
         this.energy = 75;
-        this.varzang = [character1,character2,character3,character4,character5,character6,character7];
+        
 
 
     }
@@ -51,20 +51,28 @@ module.exports = class Unknown {
             [this.x + 2, this.y + 2]
         ]
     }
-
-    chooseCell(matrix,varzang) {
+    random(Arr){
+        var Item = Arr[Math.floor(Math.random() * Arr.length)];
+        return Item;
+    }
+    chooseCell(matrix,character1,character2,character3,character4,character5,character6,character7) {
         this.getNewCoor();
         var found = [];
         for (var i in this.direct) {
             var x = this.direct[i][0];
             var y = this.direct[i][1];
             if (y >= 0 && y < matrix.length && x >= 0 && x < matrix[0].length) {
-                for(var i in varzang)
-                {
-                    if (matrix[y][x] == varzang[i]){
+                
+                    if (matrix[y][x] == character1 || /** */
+                        matrix[y][x] == character2 ||/** */ 
+                        matrix[y][x] == character3 ||/** */
+                        matrix[y][x] == character4 ||/** */
+                        matrix[y][x] == character5 ||/** */
+                        matrix[y][x] == character6 ||/** */
+                        matrix[y][x] == character7){
                         found.push(this.direct[i])
                     }
-                }
+                
 
                 
             }
@@ -88,7 +96,7 @@ module.exports = class Unknown {
             var x = this.desdirect[i][0];
             var y = this.desdirect[i][1];
             if (y >= 0 && y < matrix.length && x >= 0 && x < matrix[0].length) {
-                if (matrix[y][x] != 5 && matrix[y][x] != 9) {
+                if (matrix[y][x] != 5 && matrix[y][x] != 9 && matrix[y][x] != 8) {
                     matrix[y][x] = 0;
 
                     for (var i in grassArr) {
@@ -127,7 +135,7 @@ module.exports = class Unknown {
     }
 
     move(matrix,grassArr,GrassEaters,GishArr,unkArr,bombArr,Robo_Hunters_Arr){
-        var newCel = this.chooseCell(matrix, [0, 4, 6]);
+        var newCel = this.chooseCell(matrix, 0, 4, 6);
         var randCel = random(newCel);
         if (randCel) {
 
@@ -164,20 +172,20 @@ module.exports = class Unknown {
         }
         if(this.energy < 15 && pogoda == "Summer" ||/* */
         this.energy < 15 && pogoda == "Winter" ){
-            this.destroy();
-            this.die();
+            this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
+            this.die(matrix,unkArr);
         }
         else  if (this.energy < 1 && pogoda == "Spring" ||/* */
          this.energy < 1 &&pogoda == "Autum") {
-            this.destroy();
-            this.die();
+            this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
+            this.die(matrix,unkArr);
         }
         
     }
 
 
     eat(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr) {
-        var gishatich = this.chooseCell(matrix,[1, 2, 3, 6,8]);
+        var gishatich = this.chooseCell(matrix,1, 2, 3, 6,8);
         var randgishatich = random(gishatich);
         if (randgishatich) {
 

@@ -5,6 +5,10 @@
         this.index = index;
         this.multiply0 = 0;
     }
+    random(Arr){
+        var Item = Arr[Math.floor(Math.random() * Arr.length)];
+        return Item;
+    }
     bombcoor() {
         this.bombdirect = [
 

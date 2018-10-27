@@ -18,6 +18,7 @@
         ]
 
     }
+    
  chooseCell(matrix,character){
      var found = [];
      for(var i in this.direct){
@@ -31,10 +32,14 @@
      }
      return found;
  } 
+ random(Arr){
+    var Item = Arr[Math.floor(Math.random() * Arr.length)];
+    return Item;
+}
  mul(matrix,grassArr){
      this.multiply++;
-       var emptyCells = this.chooseCell(0);
-       var newCell = random(emptyCells);
+       var emptyCells = this.chooseCell(matrix,0);
+       var newCell = this.random(emptyCells);
 
        
        if(newCell && this.multiply >= 8){
