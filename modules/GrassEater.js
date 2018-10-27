@@ -60,9 +60,9 @@ module.exports = class GrassEater extends Def{
             }
             if(matrix[y][x] == 2){
 
-                if( (this.multiply ==14 && pogoda == "Winter"  && this.gender == 0&& matrix[y][x].gender == 1 )/* */ 
-                || (this.multiply ==14 && pogoda == "Autum" && this.gender == 0&& matrix[y][x].gender == 1  )/* */
-                  ||  (this.multiply ==11 && pogoda == "Summer"   && this.gender == 0&& matrix[y][x].gender == 1 )/* */
+                if( (this.multiply ==14 /*&& pogoda == "Winter"  */&& this.gender == 0&& matrix[y][x].gender == 1 )/* 
+                || (this.multiply ==14 && pogoda == "Autum" && this.gender == 0&& matrix[y][x].gender == 1  )/* 
+                  ||  (this.multiply ==11 && pogoda == "Summer"   && this.gender == 0&& matrix[y][x].gender == 1 )/* 
                  || (this.multiply ==11 && pogoda == "Spring"  && this.gender == 0&& matrix[y][x].gender == 1 )/* */ 
                  )
              {
@@ -93,7 +93,7 @@ module.exports = class GrassEater extends Def{
         }
     }
    
-    eat(matrix,grassArr,zavodArr,bombArr,GrassEaters){
+    eat(matrix,grassArr,GishArr,zavodArr,bombArr,GrassEaters,Robo_Hunters_Arr){
         var GrasEat = this.chooseCell(matrix,1,5,6);
         var randGrasEat = this.random(GrasEat);
         if(randGrasEat){

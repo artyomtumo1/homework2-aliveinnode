@@ -136,7 +136,7 @@ module.exports = class Unknown {
 
     move(matrix,grassArr,GrassEaters,GishArr,unkArr,bombArr,Robo_Hunters_Arr){
         var newCel = this.chooseCell(matrix, 0, 4, 6);
-        var randCel = random(newCel);
+        var randCel = this.random(newCel);
         if (randCel) {
 
             var x = randCel[0];
@@ -170,23 +170,24 @@ module.exports = class Unknown {
                 }
             }
         }
-        if(this.energy < 15 && pogoda == "Summer" ||/* */
-        this.energy < 15 && pogoda == "Winter" ){
+        if(this.energy < 15 /*&& pogoda == "Summer"*/) /*|| 
+        this.energy < 15 && pogoda == "Winter" )*/{
             this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
             this.die(matrix,unkArr);
         }
-        else  if (this.energy < 1 && pogoda == "Spring" ||/* */
+        /*
+        else  if (this.energy < 1 && pogoda == "Spring" ||/* 
          this.energy < 1 &&pogoda == "Autum") {
             this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
             this.die(matrix,unkArr);
-        }
+         }*/
         
     }
 
 
-    eat(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr) {
+    eat(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr,unkArr) {
         var gishatich = this.chooseCell(matrix,1, 2, 3, 6,8);
-        var randgishatich = random(gishatich);
+        var randgishatich = this.random(gishatich);
         if (randgishatich) {
 
             var x = randgishatich[0];

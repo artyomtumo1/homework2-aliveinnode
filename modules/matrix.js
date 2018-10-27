@@ -68,4 +68,4 @@ function randomMatrix(n, m) {
 
 }
 
-module.exports = randomMatrix(110, 110)
+module.exports = randomMatrix(100, 100)

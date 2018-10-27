@@ -114,7 +114,7 @@ module.exports = class RoboHunter extends Def{
     }
     move(matrix,grassArr,bombArr,GrassEaters,GishArr,Robo_Hunters_Arr){
         var newCel = this.chooseCell(matrix,[0, 1,6]);
-        var randCel = random(newCel);
+        var randCel = this.random(newCel);
         if (randCel) {
             var x = randCel[0];
             var y = randCel[1];
@@ -166,7 +166,7 @@ module.exports = class RoboHunter extends Def{
     }
     eat(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr){
         var newCell= this.chooseCell(matrix,[5,9]);
-        var randCel = random(newCell);
+        var randCel = this.random(newCell);
         if(randCel){
             var x = randCel[0];
             var y = randCel[1]

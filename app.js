@@ -5,7 +5,7 @@ var io = require('socket.io')(server);
 
 var matrix = require('./modules/matrix');
 var Grass = require('./modules/Grass');
-//var Default = require('./modules/Default');
+
 var GrassEater = require('./modules/GrassEater');
 var Gishatich = require('./modules/Gishatich');
 var Unknown = require('./modules/Unknown');

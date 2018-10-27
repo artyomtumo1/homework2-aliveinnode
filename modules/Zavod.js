@@ -37,7 +37,7 @@
 
  move(matrix,grassArr,unkArr){
         var newCel = this.chooseCell(matrix,[0,1]);
-        var randCel = random(newCel);
+        var randCel = this.random(newCel);
         if(randCel){
             var x = randCel[0];
             var y = randCel[1];
