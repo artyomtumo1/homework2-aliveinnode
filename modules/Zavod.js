@@ -8,14 +8,14 @@
        this.multiply = 0;
 
     }
-    chooseCell(matrix,varzang){
+    chooseCell(matrix,character1,character2,character3,character4){
         super.getNewCoor();
-        return super.chooseCell(matrix,varzang);
+        return super.chooseCell(matrix,character1,character2,character3,character4);
     }
     mul(matrix,unkArr,grassArr){
   
        var emptyCells = this.chooseCell(matrix,[0,1]);
-       var newCell = random(emptyCells);
+       var newCell = this.random(emptyCells);
        if(newCell){
            var x = newCell[0];
            var y = newCell[1];
@@ -35,8 +35,8 @@
 
 
 
- move(matrix,grassArr,unkArr){
-        var newCel = this.chooseCell(matrix,[0,1]);
+ move(matrix,grassArr,unkArr,Grass){
+        var newCel = this.chooseCell(matrix,0,1);
         var randCel = this.random(newCel);
         if(randCel){
             var x = randCel[0];

@@ -87,11 +87,7 @@ io.on('connection', function (socket) {
 
   var inter = setInterval(function () {
 
-    for (var i in GishArr) {
-      GishArr[i].eat(matrix,grassArr,GrassEaters,GishArr,bombArr,zavodArr,Robo_Hunters_Arr,Grass);
-      // console.log(GishArr.length)
-
-    }
+   
 
     for (var i in grassArr) {
       grassArr[i].mul(matrix,grassArr);
@@ -103,20 +99,26 @@ io.on('connection', function (socket) {
       //console.log(GrassEaters.length)
       //console.log(virusArr.length)
     }
-    
-    
-    for (var i in unkArr) {
-      unkArr[i].eat(matrix,grassArr,GrassEaters,GishArr,unkArr,zavodArr,bombArr,Robo_Hunters_Arr,);
-      //console.log(grassArr.length)
+    for (var i in GishArr) {
+      GishArr[i].eat(matrix,grassArr,GrassEaters,GishArr,bombArr,zavodArr,Robo_Hunters_Arr,Grass);
+      // console.log(GishArr.length)
 
     }
+    
+    
+    
 
     for (var i in zavodArr) {
-      zavodArr[i].move(matrix,unkArr,grassArr);
+      zavodArr[i].move(matrix,unkArr,grassArr,Grass);
     }
     for (var i in Robo_Hunters_Arr) {
-      Robo_Hunters_Arr[i].eat(matrix,grassArr,bombArr,GrassEaters,GishArr,Robo_Hunters_Arr);
+      Robo_Hunters_Arr[i].eat(matrix,grassArr,bombArr,GrassEaters,GishArr,Robo_Hunters_Arr,zavodArr,virusArr,Grass);
     }
+
+    for (var i in unkArr) {
+      unkArr[i].eat(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr,unkArr);
+      //console.log(grassArr.length)
+       }
 
     if (GrassEaters.length <= 12) {
       for (var i in virusArr) {

@@ -291,3 +291,93 @@ function draw() {
 /////////_-plan-_////////
 1 module.exports
 2 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ FrameCount++;
+        if (FrameCount >= 60) {
+            Statistics = {
+                "Grass": grassArr.length,
+                "GrassEater": grassEaterArr.length,
+                "Human": humanArr.length,
+                "Predator": predatorArr.length,
+                "Snail": snailArr.length,
+                "Auto": autoArr.length,
+                "Creeper": creeperArr.length
+            }
+            socket.emit("Right Text", Statistics);
+            main(Statistics);
+
+            FrameCount = 0;
+        }
+
+
+function main (stat){
+
+        myJSON = JSON.stringify(Statistics);
+        fs.writeFileSync("Statistics.json", myJSON)
+    }
+
+
+
+
+///////
+script
+///////
+ for(var i in Stat){
+        var arrText = i + ": " + Stat[i];
+
+    }
+
+function draw() {
+    background('#acacac')
+
+    textSize(32);
+    fill("black");
+    var margin = 35;
+    for(var i in Stat){
+        text(i + ": " + Stat[i], 750, margin);
+        margin += 35;
+    }

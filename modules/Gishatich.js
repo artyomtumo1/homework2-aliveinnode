@@ -27,7 +27,7 @@ module.exports = class Gishatich extends Def {
     mul(matrix, GishArr) {
 
         var emptyCells = this.chooseCell(matrix,0);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
 
         if (newCell) {
             var newX = newCell[0];
@@ -77,11 +77,11 @@ module.exports = class Gishatich extends Def {
             }
             else if (matrix[y][x] == 3) {
 
-                if ((this.multiply == 18 && pogoda == "Winter" && this.gender == 0 && matrix[y][x].gender == 1)/* */
-                    || (this.multiply == 18 && pogoda == "Autum" && this.gender == 0 && matrix[y][x].gender == 1) /* */
-                    || (this.multiply == 15 && pogoda == "Summer" && this.gender == 0 && matrix[y][x].gender == 1) /* */
-                    || (this.multiply == 15 && pogoda == "Spring" && this.gender == 0 && matrix[y][x].gender == 1)/* */
-                ) {
+                if ((this.multiply == 18 /*&& pogoda == "Winter" && this.gender == 0 && matrix[y][x].gender == 1)/* 
+                    || (this.multiply == 18 && pogoda == "Autum" && this.gender == 0 && matrix[y][x].gender == 1) /* 
+                    || (this.multiply == 15 && pogoda == "Summer" && this.gender == 0 && matrix[y][x].gender == 1) /* 
+                    || (this.multiply == 15 && pogoda == "Spring" && this.gender == 0 && matrix[y][x].gender == 1*/))
+                     {
                     setTimeout(function () { this.mul(matrix, GishArr); }, 3000);
 
                 }

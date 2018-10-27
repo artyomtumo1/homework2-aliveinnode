@@ -134,7 +134,7 @@ module.exports = class Unknown {
         }
     }
 
-    move(matrix,grassArr,GrassEaters,GishArr,unkArr,bombArr,Robo_Hunters_Arr){
+    move(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr,unkArr){
         var newCel = this.chooseCell(matrix, 0, 4, 6);
         var randCel = this.random(newCel);
         if (randCel) {
@@ -170,19 +170,18 @@ module.exports = class Unknown {
                 }
             }
         }
-        if(this.energy < 15 /*&& pogoda == "Summer"*/) /*|| 
-        this.energy < 15 && pogoda == "Winter" )*/{
+        if(this.energy < 15 ){
             this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
             this.die(matrix,unkArr);
         }
-        /*
-        else  if (this.energy < 1 && pogoda == "Spring" ||/* 
-         this.energy < 1 &&pogoda == "Autum") {
-            this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
-            this.die(matrix,unkArr);
-         }*/
+        
+        // else  if (this.energy < 1 && pogoda == "Spring" || this.energy < 1 &&pogoda == "Autum") {
+        //     this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
+        //     this.die(matrix,unkArr);
+        //  }
         
     }
+    
 
 
     eat(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr,unkArr) {
@@ -245,7 +244,7 @@ module.exports = class Unknown {
 
 
         else {
-            this.move(matrix,grassArr,GrassEaters,GishArr,unkArr,bombArr,Robo_Hunters_Arr);
+            this.move(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr,unkArr);
 
         }
         if (this.energy < 1) {
