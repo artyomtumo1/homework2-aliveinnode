@@ -19,12 +19,17 @@ module.exports = class zavod extends Def {
         if (newCell) {
             var x = newCell[0];
             var y = newCell[1];
-            matrix[y][x] = 4;
-            for (var i in grassArr) {
-                if (x == grassArr[i].x && y == grassArr[i].y) {
-                    grassArr.splice(i, 1);
+            if(matrix[y][x] == 1){
+                
+                for (var i in grassArr) {
+                    if (x == grassArr[i].x && y == grassArr[i].y) {
+                        grassArr.splice(i, 1);
+                    }
                 }
-            }
+            } 
+            
+            matrix[y][x] = 4;
+           
             var izd = new unkcreat(x, y, 4);
             unkArr.push(izd);
             //console.log(unkArr[unkArr.length-1])

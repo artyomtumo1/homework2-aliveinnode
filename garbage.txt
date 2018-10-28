@@ -382,3 +382,12 @@ function draw() {
         text(i + ": " + Stat[i], 750, margin);
         margin += 35;
     }
+
+    1-grass
+    2-GrassEater
+    3-Gishatich
+    4-Unknown
+    5-zavod
+    6-bomb
+    8-RoboHunter
+    9-Virus

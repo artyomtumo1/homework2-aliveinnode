@@ -79,8 +79,8 @@ module.exports = class RoboHunter extends Def {
 
                 if (matrix[y][x] != 4) {
                     if ((matrix[y][x] == 5) || (matrix[y][x] == 9)) {
-                        matrix[y][x] = this.index;
-                        matrix[this.y][this.x] = 0;
+                        matrix[y][x] = 0;
+                        matrix[this.y][this.x] = this.index;
 
 
                         for (var w in zavodArr) {
@@ -191,14 +191,15 @@ module.exports = class RoboHunter extends Def {
         }
 
     }
-    eat(matrix, grassArr, GrassEaters, GishArr, bombArr, Robo_Hunters_Arr, zavodArr, virusArr, Grass) 
-    {
+    eat(matrix, grassArr, GrassEaters, GishArr, bombArr, Robo_Hunters_Arr, zavodArr, virusArr, Grass) {
         var newCell = this.chooseCell(matrix, 5, 9);
         var randCel = this.random(newCell);
         if (randCel) {
             var x = randCel[0];
             var y = randCel[1]
-            if (matrix[y][x] == 5 || matrix[y][x] == 9) {
+            if (matrix[y][x] != 1 &&
+                matrix[y][x] != 2 &&
+                matrix[y][x] != 3 ) {
                 matrix[y][x] = this.index;
                 matrix[this.y][this.x] = 0;
 
@@ -213,7 +214,7 @@ module.exports = class RoboHunter extends Def {
             this.move(matrix, grassArr, bombArr, GrassEaters, GishArr, Robo_Hunters_Arr, Grass);
         }
         if (this.multiply == 9 /*&& pogoda == "Winter") || (this.multiply == 7 && pogoda == "Summer") ||((this.multiply == 8 && pogoda == "Spring")|| (this.multiply == 8 && pogoda == "Autum")*/) {
-             this.mul(matrix, Robo_Hunters_Arr, grassArr);
+            this.mul(matrix, Robo_Hunters_Arr, grassArr);
         }
     }
 }

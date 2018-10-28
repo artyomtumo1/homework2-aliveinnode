@@ -73,6 +73,7 @@ module.exports = class Virus{
         for (var i in virusArr) {
             if (this.x == virusArr[i].x && this.y == virusArr[i].y) {
                 virusArr.splice(i, 1);
+                break
             }
         }
     }
@@ -82,20 +83,18 @@ module.exports = class Virus{
             var x = this.virusdirect[i][0];
             var y = this.virusdirect[i][1];
             if (y >= 0 && y < matrix.length && x >= 0 && x < matrix[0].length) {
-
-                   
+                if(matrix[y][x] == 1)
+                {
                     matrix[y][x] = 0;
-                    matrix[this.y][this.x] = 0;
+                    //matrix[this.y][this.x] = 0;
 
                     for (var q in grassArr) {
                         if (x == grassArr[q].x && y == grassArr[q].y) {
                             grassArr.splice(q, 1);
+                            break;
                         }
                     }
-                    
-                    
-                   
-                
+                }
             }
         }
     }

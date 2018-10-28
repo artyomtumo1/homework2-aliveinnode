@@ -32,7 +32,7 @@ function randomMatrix(n, m) {
         matrix[r3][r33] = 3;
     }
 
-    for (var r = 0; r < 21; r++) {
+    for (var r = 0; r < /*21*/5; r++) {
 
         var r4 = Math.floor((Math.random() * 80) + 5);
         var r44 = Math.floor((Math.random() * 80) + 5);;

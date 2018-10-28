@@ -5,10 +5,7 @@ module.exports = class Unknown {
         this.index = index;
         this.multiply = 0;
 
-        this.energy = 75;
-        
-
-
+        this.energy = /*75*/75;
     }
     getNewCoor() {
         this.direct = [
@@ -51,46 +48,42 @@ module.exports = class Unknown {
             [this.x + 2, this.y + 2]
         ]
     }
-    random(Arr){
+    random(Arr) {
         var Item = Arr[Math.floor(Math.random() * Arr.length)];
         return Item;
     }
-    chooseCell(matrix,character1,character2,character3,character4,character5,character6,character7) {
+    chooseCell(matrix, character1, character2, character3, character4, character5, character6, character7) {
         this.getNewCoor();
         var found = [];
         for (var i in this.direct) {
             var x = this.direct[i][0];
             var y = this.direct[i][1];
             if (y >= 0 && y < matrix.length && x >= 0 && x < matrix[0].length) {
-                
-                    if (matrix[y][x] == character1 || /** */
-                        matrix[y][x] == character2 ||/** */ 
-                        matrix[y][x] == character3 ||/** */
-                        matrix[y][x] == character4 ||/** */
-                        matrix[y][x] == character5 ||/** */
-                        matrix[y][x] == character6 ||/** */
-                        matrix[y][x] == character7){
-                        found.push(this.direct[i])
-                    }
-                
 
-                
+                if (matrix[y][x] == character1 || /** */
+                    matrix[y][x] == character2 ||/** */
+                    matrix[y][x] == character3 ||/** */
+                    matrix[y][x] == character4 ||/** */
+                    matrix[y][x] == character5 ||/** */
+                    matrix[y][x] == character6 ||/** */
+                    matrix[y][x] == character7) {
+                    found.push(this.direct[i])
+                }
             }
         }
         return found;
     }
-    die(matrix,unkArr) {
-
-
+    die(matrix, unkArr) {
         matrix[this.y][this.x] = 0;
 
         for (var i in unkArr) {
             if (this.x == unkArr[i].x && this.y == unkArr[i].y) {
                 unkArr.splice(i, 1);
+                break;
             }
         }
     }
-    destroy(matrix,grassArr,GrassEaters,GishArr,unkArr) {
+    destroy(matrix, grassArr, GrassEaters, GishArr, unkArr) {
         this.destroycoor();
         for (var i in this.desdirect) {
             var x = this.desdirect[i][0];
@@ -102,39 +95,36 @@ module.exports = class Unknown {
                     for (var i in grassArr) {
                         if (x == grassArr[i].x && y == grassArr[i].y) {
                             grassArr.splice(i, 1);
+                            break;
                         }
                     }
-
 
                     for (var i in GrassEaters) {
-
                         if (x == GrassEaters[i].x && y == GrassEaters[i].y) {
                             GrassEaters.splice(i, 1);
+                            break;
                         }
                     }
-
 
                     for (var i in GishArr) {
-
                         if (x == GishArr[i].x && y == GishArr[i].y) {
                             GishArr.splice(i, 1);
+                            break;
                         }
                     }
 
-
                     for (var i in unkArr) {
-                        
                         if (x == unkArr[i].x && y == unkArr[i].y) {
                             unkArr.splice(i, 1);
+                            break;
                         }
-                        
                     }
                 }
             }
         }
     }
 
-    move(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr,unkArr){
+    move(matrix, grassArr, GrassEaters, GishArr, bombArr, Robo_Hunters_Arr, unkArr) {
         var newCel = this.chooseCell(matrix, 0, 4, 6);
         var randCel = this.random(newCel);
         if (randCel) {
@@ -147,14 +137,13 @@ module.exports = class Unknown {
                 this.x = x;
                 this.y = y;
                 this.energy--;
-
             }
             else if (matrix[y][x] == 4) {
-                
-                this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
-                
-                this.die(matrix,unkArr);
-               
+
+                this.destroy(matrix, grassArr, GrassEaters, GishArr, unkArr);
+
+                this.die(matrix, unkArr);
+
             }
             else if (matrix[y][x] == 6) {
 
@@ -164,28 +153,28 @@ module.exports = class Unknown {
                 for (var i in bombArr) {
 
                     if (x == bombArr[i].x && y == bombArr[i].y) {
-                        bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
-                        bombArr[i].die(matrix,bombArr);
+                        bombArr[i].deploy(matrix, grassArr, GrassEaters, GishArr, Robo_Hunters_Arr);
+                        bombArr[i].die(matrix, bombArr);
                     }
                 }
             }
         }
-        if(this.energy < 15 ){
-            this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
-            this.die(matrix,unkArr);
+        if (this.energy < 15) {
+            this.destroy(matrix, grassArr, GrassEaters, GishArr, unkArr);
+            this.die(matrix, unkArr);
         }
-        
+
         // else  if (this.energy < 1 && pogoda == "Spring" || this.energy < 1 &&pogoda == "Autum") {
         //     this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
         //     this.die(matrix,unkArr);
         //  }
-        
+
     }
-    
 
 
-    eat(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr,bombArr,unkArr) {
-        var gishatich = this.chooseCell(matrix,1, 2, 3, 6,8);
+
+    eat(matrix, grassArr, GrassEaters, GishArr, Robo_Hunters_Arr, bombArr, unkArr) {
+        var gishatich = this.chooseCell(matrix, 1, 2, 3, 6, 8);
         var randgishatich = this.random(gishatich);
         if (randgishatich) {
 
@@ -198,8 +187,6 @@ module.exports = class Unknown {
                 this.x = x;
                 this.y = y;
                 this.energy--;
-
-
 
                 for (var i in grassArr) {
                     if (x == grassArr[i].x && y == grassArr[i].y) {
@@ -224,32 +211,26 @@ module.exports = class Unknown {
                         Robo_Hunters_Arr.splice(i, 1);
                     }
                 }
-
-
             }
             else if (matrix[y][x] == 6) {
                 matrix[y][x] = 0;
                 matrix[this.y][this.x] = this.index;
 
-
                 for (var i in bombArr) {
 
                     if (x == bombArr[i].x && y == bombArr[i].y) {
-                        bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
-                        bombArr[i].die(matrix,bombArr);
+                        bombArr[i].deploy(matrix, grassArr, GrassEaters, GishArr, Robo_Hunters_Arr);
+                        bombArr[i].die(matrix, bombArr);
                     }
                 }
             }
         }
-
-
         else {
-            this.move(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr,unkArr);
-
+            this.move(matrix, grassArr, GrassEaters, GishArr, bombArr, Robo_Hunters_Arr, unkArr);
         }
         if (this.energy < 1) {
-            this.destroy(matrix,grassArr,GrassEaters,GishArr,unkArr);
-            this.die(matrix,unkArr);
+            this.destroy(matrix, grassArr, GrassEaters, GishArr, unkArr);
+            this.die(matrix, unkArr);
         }
     }
 }

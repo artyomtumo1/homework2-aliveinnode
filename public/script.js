@@ -3,6 +3,16 @@ var socket;
 var matrix;
 var Stat;
 
+var grass_procent;
+var GrassEaters_procent;
+var GishArr_procent;
+var unkArr_procent;
+var zavodArr_procent;
+var bombArr_procent;
+var virusArr_procent;
+var Robo_Hunters_Arr_procent;
+
+
 for(var i in Stat){
     var arrText = i +": " + Stat[i];
 }
@@ -24,6 +34,15 @@ function setup()
         socket.on("MyStats",function(Statistics)
         {
             Stat = Statistics
+            grass_procent = (grassArr.length)/100;
+            GrassEaters_procent = (GrassEaters.length)/100;
+            GishArr_procent = (GishArr.length)/100;
+            unkArr_procent = (unkArr.length)/100;
+            zavodArr_procent = (zavodArr.length)/100;
+            bombArr_procent = (bombArr.length)/100;
+            virusArr_procent = (virusArr.length)/100;
+            Robo_Hunters_Arr_procent = ()
+
         })
         
     });
@@ -33,11 +52,35 @@ function setup()
 function draw() {
     background("#acacac");
     textSize(32);
-    fill("black");
+    fill("green")
     var margin = 35;
+    var colornum = 0;
     for(var i in Stat){
-        text(i + ": " + Stat[i], 935, margin);
+        ++colornum;
+        text(i + ": " + Stat[i], 1000, margin);
         margin += 35;
+        
+         if(colornum == 1){
+            fill("yellow")
+        }
+        else if(colornum == 2){
+            fill("black")
+        }
+        else if(colornum == 3){
+            fill("blue")
+        }
+        else if(colornum == 4){
+            fill("red")
+        }
+        else if(colornum == 5){
+            fill("aqua")
+        }
+        else if(colornum == 6){
+            fill("blueviolet")
+        }
+        else if(colornum == 7){
+            fill("orange")
+        }
     }
     // var FramesNumber = 0;
     // FramesNumber++;
@@ -82,7 +125,7 @@ function draw() {
                 rect(x * side, y * side, side, side);
              }
              else if (matrix[y][x] ==8) {
-                fill(132, 4, 254);
+                fill(204, 0, 202);
                 rect(x * side, y * side, side, side);
 
             }
