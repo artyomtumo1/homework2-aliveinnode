@@ -333,32 +333,33 @@ function draw() {
 
 
 
+function stringTo(stat){
 
+        myJSON = JSON.stringify(Statistics);
+        fs.writeFileSync("Statistics.json", myJSON)
+    }
 
 
  FrameCount++;
         if (FrameCount >= 60) {
             Statistics = {
                 "Grass": grassArr.length,
-                "GrassEater": grassEaterArr.length,
-                "Human": humanArr.length,
-                "Predator": predatorArr.length,
-                "Snail": snailArr.length,
-                "Auto": autoArr.length,
-                "Creeper": creeperArr.length
+                "GrassEater": GrassEaters.length,
+                "Gishatich": GishArr.length,
+                "Unknown": unkArr.length,
+                "zavod": zavodArr.length,
+                "bomb": bombArr.length,
+                "Virus": virusArr.length,
+                "RoboHunter":Robo_Hunters_Arr.length
             }
-            socket.emit("Right Text", Statistics);
-            main(Statistics);
+            socket.emit("My stats", Statistics);
+            stringTo(Statistics);
 
             FrameCount = 0;
         }
 
 
-function main (stat){
 
-        myJSON = JSON.stringify(Statistics);
-        fs.writeFileSync("Statistics.json", myJSON)
-    }
 
 
 
