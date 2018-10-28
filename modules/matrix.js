@@ -12,7 +12,7 @@ function randomMatrix(n, m) {
 
 
       
-    for (var q = 0; q < 202/*30*/; q++) {
+    for (var q = 0; q < 200/*30*/; q++) {
 
         var r1 = Math.floor((Math.random() * 80) + 5);
         var r11 = Math.floor((Math.random() * 80) + 5);
@@ -32,22 +32,22 @@ function randomMatrix(n, m) {
         matrix[r3][r33] = 3;
     }
 
-    for (var r = 0; r < /*21*/5; r++) {
+    for (var r = 0; r < /*20*/10; r++) {
 
         var r4 = Math.floor((Math.random() * 80) + 5);
         var r44 = Math.floor((Math.random() * 80) + 5);;
         matrix[r4][r44] = 4;
     }
 
-    for (var t = 0; t < 16; t++) {
+    for (var t = 0; t < 20; t++) {
         var r55 = Math.floor((Math.random() * 80) + 5);
         var r5 = Math.floor((Math.random() * 80) + 5);
         matrix[r5][r55] = 5;
      }
     for (var t = 0; t < 40; t++) {
-        var r55 = Math.floor((Math.random() * 80) + 5);
-        var r5 = Math.floor((Math.random() * 80) + 5);
-        matrix[r5][r55] = 6;
+        var r66 = Math.floor((Math.random() * 80) + 5);
+        var r6 = Math.floor((Math.random() * 80) + 5);
+        matrix[r6][r66] = 6;
 
     }
     for (var t = 0; t < 30; t++) {

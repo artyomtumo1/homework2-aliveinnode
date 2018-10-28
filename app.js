@@ -43,6 +43,8 @@ var frameRate = 5;
 var drawTime = 1000 / frameRate;
 var frameCount = 0;
 
+
+
 io.on('connection', function (socket) {
   socket.emit('matrix', matrix);
 
@@ -88,6 +90,14 @@ io.on('connection', function (socket) {
     }
   }
 
+  function perc(who, all)//who: grassArr.length; all: all array lengths  in array
+  {
+    var sum = 0;
+
+    for(var i in all) sum += all[i];
+
+    return who/sum * 100 ;
+  }
 
   var inter = setInterval(function () {
 
@@ -95,12 +105,12 @@ io.on('connection', function (socket) {
 
     for (var i in grassArr) {
       grassArr[i].mul(matrix, grassArr);
-      //console.log(unkArr.length)
-      console.log(zavodArr.length)
-      // console.log(grassArr.length)
-      //console.log(virusArr.length)
+      //console.log(bombArr.length);
+     
     }
-
+    // for(var i in bombArr){
+    //   console.log(bombArr[i]);
+    // }
     for (var i in GrassEaters) {
       GrassEaters[i].eat(matrix, grassArr, zavodArr, bombArr, GrassEaters, GishArr, Robo_Hunters_Arr)
       //console.log(GrassEaters.length)
@@ -132,13 +142,27 @@ io.on('connection', function (socket) {
         virusArr[i].die(matrix,virusArr);
       }
   }
-
+  ////////////
+///////////////
     frameCount++;
+  if (frameCount >= 60) {
+    var allZang = [grassArr.length, GrassEaters.length, GishArr.length, unkArr.length, zavodArr.length, bombArr.length, virusArr.length, Robo_Hunters_Arr.length];
+    var procentZang = {
+      "Grass": perc(grassArr.length, allZang),
+      "GrassEater":perc(GrassEaters.length,allZang),// GrassEaters.length,
+      "Gishatich":  perc(GishArr.length,allZang),//GishArr.length,
+      "Unknown": perc(unkArr.length,allZang),//unkArr.length,
+      "zavod": perc(zavodArr.length,allZang),//zavodArr.length,
+      "bomb": perc(bombArr.length,allZang),//bombArr.length,
+      "Virus": perc(virusArr.length,allZang),//virusArr.length,
+      "RoboHunter": perc(Robo_Hunters_Arr.length,allZang),//Robo_Hunters_Arr.length
+    }
 
-  if (frameCount == 60) {
+
+
     Statistics = {
       "Grass": grassArr.length,
-      "GrassEater": GrassEaters.length,
+      "GrassEater":GrassEaters.length,
       "Gishatich": GishArr.length,
       "Unknown": unkArr.length,
       "zavod": zavodArr.length,
@@ -146,16 +170,23 @@ io.on('connection', function (socket) {
       "Virus": virusArr.length,
       "RoboHunter": Robo_Hunters_Arr.length
     }
+
     socket.emit("MyStats", Statistics);
     stringTo(Statistics);
     frameCount = 0;
+   socket.emit("Procent",procentZang)
+   anotherStringTo(procentZang);
   }
 
 
   socket.emit('redraw', matrix);
 }, drawTime);
 function stringTo(stat) {
-  myJSON = JSON.stringify(Statistics);
+  myJSON = JSON.stringify(stat);
   fs.writeFileSync("Statistics.json", myJSON)
+}
+function anotherStringTo(procentius){
+  myJSON = JSON.stringify(procentius);
+  fs.writeFileSync("AnotherStats.json",myJSON)
 }
 })

@@ -124,19 +124,19 @@ module.exports = class GrassEater extends Def{
            
              
            }
-           else if(matrix[y][x] == 6){
-            matrix[y][x] = 0;
-            matrix[this.y][this.x] = this.index;
+        //    else if(matrix[y][x] == 6){
+        //     matrix[y][x] = 0;
+        //     matrix[this.y][this.x] = this.index;
           
-            for(var i in bombArr){
+        //     for(var i in bombArr){
                 
-                if( x == bombArr[i].x && y == bombArr[i].y)
-                {
-                    bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
-                    bombArr[i].die(matrix,bombArr);
-                }  
-                }
-        }
+        //         if( x == bombArr[i].x && y == bombArr[i].y)
+        //         {
+        //             bombArr[i].deploy(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
+        //             bombArr[i].die(matrix,bombArr);
+        //         }  
+        //         }
+        // }
            
  }
         
