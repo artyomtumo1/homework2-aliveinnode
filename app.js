@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
+var fs = require("fs");
 var io = require('socket.io')(server);
 
 var matrix = require('./modules/matrix');
@@ -37,9 +38,10 @@ app.get("/", function (req, res) {
 
 server.listen(3000);
 
-var frameCount = 5;
+var frameRate = 5;
 
-var drawTime = 1000 / frameCount;
+var drawTime = 1000 / frameRate;
+var frameCount = 0;
 
 io.on('connection', function (socket) {
   socket.emit('matrix', matrix);
@@ -89,45 +91,73 @@ io.on('connection', function (socket) {
 
    
 
-    for (var i in grassArr) {
+    for (var i in grassArr) 
+    {
       grassArr[i].mul(matrix,grassArr);
       // console.log(grassArr.length)
     }
 
-    for (var i in GrassEaters) {
-      GrassEaters[i].eat(matrix,grassArr,GrassEaters,GishArr,bombArr,zavodArr,Robo_Hunters_Arr)
+    for (var i in GrassEaters) 
+    {
+      GrassEaters[i].eat(matrix,grassArr,zavodArr,bombArr,GrassEaters,GishArr,Robo_Hunters_Arr)
       //console.log(GrassEaters.length)
       //console.log(virusArr.length)
     }
-    for (var i in GishArr) {
+    for (var i in GishArr) 
+    {
       GishArr[i].eat(matrix,grassArr,GrassEaters,GishArr,bombArr,zavodArr,Robo_Hunters_Arr,Grass);
       // console.log(GishArr.length)
 
     }
-    
-    
-    
-
-    for (var i in zavodArr) {
-      zavodArr[i].move(matrix,unkArr,grassArr,Grass);
+    for (var i in zavodArr) 
+    {
+      zavodArr[i].move(matrix, grassArr, unkArr, Grass);
     }
     for (var i in Robo_Hunters_Arr) {
+      //console.log(Robo_Hunters_Arr[i]);
+      
       Robo_Hunters_Arr[i].eat(matrix,grassArr,bombArr,GrassEaters,GishArr,Robo_Hunters_Arr,zavodArr,virusArr,Grass);
     }
 
     for (var i in unkArr) {
-      unkArr[i].eat(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr,unkArr);
+      //console.log(unkArr[i])
+      unkArr[i].eat(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr,bombArr,unkArr);
       //console.log(grassArr.length)
        }
 
     if (GrassEaters.length <= 12) {
-      for (var i in virusArr) {
+      for (var i in virusArr) 
+      {
         virusArr[i].deploy(matrix,grassArr);
         virusArr[i].die(matrix,virusArr);
 
 
       }
     }
+
+    frameCount++;
+
+    if(frameCount == 60){
+      Statistics = {
+        "Grass": grassArr.length,
+        "GrassEater": GrassEaters.length,
+        "Gishatich": GishArr.length,
+        "Unknown": unkArr.length,
+        "zavod": zavodArr.length,
+        "bomb": bombArr.length,
+        "Virus": virusArr.length,
+        "RoboHunter":Robo_Hunters_Arr.length
+    }
+    socket.emit("MyStats",Statistics);
+    stringTo(Statistics);
+    frameCount = 0;
+    }
+
+
     socket.emit('redraw', matrix);
   }, drawTime);
+  function stringTo(stat){
+    myJSON = JSON.stringify(Statistics);
+    fs.writeFileSync("Statistics.json", myJSON)
+  }
 })

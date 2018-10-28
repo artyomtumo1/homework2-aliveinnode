@@ -1,7 +1,11 @@
 var side = 9;
 var socket;
 var matrix;
+var Stat;
 
+for(var i in Stat){
+    var arrText = i +": " + Stat[i];
+}
 function setup() 
 {
     frameRate(0);
@@ -9,35 +13,40 @@ function setup()
 
     socket.on('matrix', function(mtx){
         matrix = mtx;
-        createCanvas(110* side, 110 * side);
+        createCanvas(140* side, 102 * side);
         noLoop();
 
-        socket.on('redraw', function(mtx){
+        socket.on('redraw', function(mtx)
+        {
             matrix = mtx;
             redraw();
-           
-
         });
+        socket.on("MyStats",function(Statistics)
+        {
+            Stat = Statistics
+        })
+        
     });
 
-    background("#acacac");
+    
 }
 function draw() {
+    background("#acacac");
+    textSize(32);
+    fill("black");
+    var margin = 35;
+    for(var i in Stat){
+        text(i + ": " + Stat[i], 935, margin);
+        margin += 35;
+    }
     // var FramesNumber = 0;
     // FramesNumber++;
-    
     // var textpogoda = "1"
-       
     // if(FramesNumber == 30 || FramesNumber == FramesNumber + 30 ){
     //    textpogoda = pogoda;
     //    pogoda = "Spring"
     // }
-    
-    
-     
-    
     // fill(0);
-    
     // text(pogoda,920,20)
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {

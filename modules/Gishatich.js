@@ -67,7 +67,7 @@ module.exports = class Gishatich extends Def {
                 matrix[y][x] = 3;
 
                 matrix[this.y][this.x] = 1;
-                var nGrass = new Grass(this.x, this.y, 1);
+                var nGrass = new grasswalk(this.x, this.y, 1);
                 grassArr.push(nGrass);
 
                 this.x = x;
@@ -82,7 +82,7 @@ module.exports = class Gishatich extends Def {
                     || (this.multiply == 15 && pogoda == "Summer" && this.gender == 0 && matrix[y][x].gender == 1) /* 
                     || (this.multiply == 15 && pogoda == "Spring" && this.gender == 0 && matrix[y][x].gender == 1*/))
                      {
-                    setTimeout(function () { this.mul(matrix, GishArr); }, 3000);
+                    this.mul(matrix, GishArr); 
 
                 }
 

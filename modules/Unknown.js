@@ -184,7 +184,7 @@ module.exports = class Unknown {
     
 
 
-    eat(matrix,grassArr,GrassEaters,GishArr,bombArr,Robo_Hunters_Arr,unkArr) {
+    eat(matrix,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr,bombArr,unkArr) {
         var gishatich = this.chooseCell(matrix,1, 2, 3, 6,8);
         var randgishatich = this.random(gishatich);
         if (randgishatich) {

@@ -12,13 +12,13 @@ function randomMatrix(n, m) {
 
 
       
-    for (var q = 0; q < 192/*30*/; q++) {
+    for (var q = 0; q < 202/*30*/; q++) {
 
         var r1 = Math.floor((Math.random() * 80) + 5);
         var r11 = Math.floor((Math.random() * 80) + 5);
         matrix[r1][r11] = 1;
     }
-    for (var w = 0; w < 180; w++) {
+    for (var w = 0; w < 170; w++) {
 
         var r2 = Math.floor((Math.random() * 80) + 5);
         var r22 = Math.floor((Math.random() * 80) + 5);

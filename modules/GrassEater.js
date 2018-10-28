@@ -44,7 +44,7 @@ module.exports = class GrassEater extends Def{
          
 }
 
-    move(matrix,bombArr,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr){
+    move(matrix,GrassEaters,bombArr,grassArr,GishArr,Robo_Hunters_Arr){
         var newCel = this.chooseCell(matrix,0,2,6);
         var randCel = this.random(newCel);
         if(randCel){
@@ -67,7 +67,7 @@ module.exports = class GrassEater extends Def{
                  )
              {
                 
-                setTimeout(function(){this.mul(matrix,GrassEaters);}, 3000);
+               this.mul(matrix,GrassEaters);
                    
              }
 
@@ -93,7 +93,7 @@ module.exports = class GrassEater extends Def{
         }
     }
    
-    eat(matrix,grassArr,GishArr,zavodArr,bombArr,GrassEaters,Robo_Hunters_Arr){
+    eat(matrix,grassArr,zavodArr,bombArr,GrassEaters,GishArr,Robo_Hunters_Arr){
         var GrasEat = this.chooseCell(matrix,1,5,6);
         var randGrasEat = this.random(GrasEat);
         if(randGrasEat){
@@ -141,7 +141,7 @@ module.exports = class GrassEater extends Def{
  }
         
         else {
-             this.move(matrix,bombArr,grassArr,GrassEaters,GishArr,Robo_Hunters_Arr);
+             this.move(matrix,GrassEaters,bombArr,grassArr,GishArr,Robo_Hunters_Arr);
 
             }
     } 

@@ -109,6 +109,36 @@ module.exports = class RoboHunter extends Def {
         }
 
     }
+    mul(matrix, Robo_Hunters_Arr, grassArr) {
+
+        var newmulCell = this.chooseCell(matrix, 0, 1);
+        var randmulCell = this.random(newmulCell);
+
+        if (randmulCell) {
+            var newX = randmulCell[0];
+            var newY = randmulCell[1];
+            if (matrix[newY][newX] == 0) {
+                matrix[newY][newX] = this.index;
+                var robohunterm2 = new RoboHunter(newX, newY, this.index);
+                Robo_Hunters_Arr.push(robohunterm2);
+                this.multiply = 0;
+            }
+            else if (matrix[newY][newX] == 1) {
+                for (var i in grassArr) {
+                    if (newX == grassArr[i].newX && newY == grassArr[i].newY) {
+                        grassArr.splice(i, 1);
+                    }
+                }
+                matrix[newY][newX] = this.index;
+                var robohunterm2 = new RoboHunter(newX, newY, this.index);
+                Robo_Hunters_Arr.push(robohunterm2);
+                this.multiply = 0;
+            }
+
+
+        }
+    }
+
     move(matrix, grassArr, bombArr, GrassEaters, GishArr, Robo_Hunters_Arr, Grass) {
         var newCel = this.chooseCell(matrix, 0, 1, 6);
         var randCel = this.random(newCel);
@@ -131,10 +161,8 @@ module.exports = class RoboHunter extends Def {
                         grassArr.splice(i, 1);
                     }
                 }
-
-
                 matrix[this.y][this.x] = 1;
-                var nGrass = new Grass(this.x, this.y, 1);
+                var nGrass = new GrassWalk(this.x, this.y, 1);
                 grassArr.push(nGrass);
                 matrix[y][x] = 8;
 
@@ -163,7 +191,8 @@ module.exports = class RoboHunter extends Def {
         }
 
     }
-    eat(matrix, grassArr, GrassEaters, GishArr, bombArr, Robo_Hunters_Arr, zavodArr, virusArr, Grass) {
+    eat(matrix, grassArr, GrassEaters, GishArr, bombArr, Robo_Hunters_Arr, zavodArr, virusArr, Grass) 
+    {
         var newCell = this.chooseCell(matrix, 5, 9);
         var randCel = this.random(newCell);
         if (randCel) {
@@ -183,40 +212,8 @@ module.exports = class RoboHunter extends Def {
         else {
             this.move(matrix, grassArr, bombArr, GrassEaters, GishArr, Robo_Hunters_Arr, Grass);
         }
-        if (this.multiply == 9 /*&& pogoda == "Winter") 
-        || (this.multiply == 7 && pogoda == "Summer") 
-        ||((this.multiply == 8 && pogoda == "Spring")
-        || (this.multiply == 8 && pogoda == "Autum")*/) {
-            setTimeout(function () { this.mul(matrix, Robo_Hunters_Arr, grassArr); }, 10000)
+        if (this.multiply == 9 /*&& pogoda == "Winter") || (this.multiply == 7 && pogoda == "Summer") ||((this.multiply == 8 && pogoda == "Spring")|| (this.multiply == 8 && pogoda == "Autum")*/) {
+             this.mul(matrix, Robo_Hunters_Arr, grassArr);
         }
     }
-    mul(matrix, Robo_Hunters_Arr, grassArr) {
-        var newmulCell = this.chooseCell(matrix, 0, 1);
-        var randmulCell = this.random(newmulCell);
-        if (randmulCel) {
-            var newX = randmulCell[0];
-            var newY = randmulCell[1];
-            if (matrix[newY][newX] == 0) {
-                matrix[newY][newX] = this.index;
-                var robohunterm2 = new RoboHunter(newX, newY, this.index);
-                Robo_Hunters_Arr.push(robohunterm2);
-                this.multiply = 0;
-            }
-            else if (matrix[newY][newX == 1]) {
-                for (var i in grassArr) {
-                    if (newX == grassArr[i].newX && newY == grassArr[i].newY) {
-                        grassArr.splice(i, 1);
-                    }
-                }
-                matrix[newY][newX] = this.index;
-                var robohunterm2 = new RoboHunter(newX, newY, this.index);
-                Robo_Hunters_Arr.push(robohunterm2);
-                this.multiply = 0;
-            }
-
-
-        }
-    }
-
-
 }
